@@ -68,7 +68,7 @@ def generic_bfs_edges(G, source, neighbors=None, depth_limit=None, sort_neighbor
     if callable(sort_neighbors):
         _neighbors = neighbors
         neighbors = lambda node: iter(sort_neighbors(_neighbors(node)))
-
+    print(source)
     visited = {source}
     if depth_limit is None:
         depth_limit = len(G)
@@ -79,6 +79,7 @@ def generic_bfs_edges(G, source, neighbors=None, depth_limit=None, sort_neighbor
             child = next(children)
             if child not in visited:
                 yield parent, child
+                print(child)
                 visited.add(child)
                 if depth_now > 1:
                     queue.append((child, depth_now - 1, neighbors(child)))
