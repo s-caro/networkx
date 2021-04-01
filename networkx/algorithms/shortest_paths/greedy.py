@@ -1,4 +1,4 @@
-"""Shortest paths and path lengths using the A* ("A star") algorithm.
+"""Shortest paths and path lengths using the greedy algorithm.
 """
 from heapq import heappush, heappop
 from itertools import count
@@ -11,7 +11,7 @@ __all__ = ["greedy_path", "greedy_path_length"]
 
 def greedy_path(G, source, target, heuristic=None, weight="weight"):
     """Returns a list of nodes in a shortest path between source and target
-    using the A* ("A-star") algorithm.
+    using the greedy algorithm.
 
     There may be more than one shortest path.  This returns only one.
 
@@ -73,6 +73,7 @@ def greedy_path(G, source, target, heuristic=None, weight="weight"):
 
     if heuristic is None:
         # The default heuristic is h=0 - same as Dijkstra's algorithm
+        # dovebbe fare una visita in ampiezza
         def heuristic(u, v):
             return 0
 
@@ -140,7 +141,7 @@ def greedy_path(G, source, target, heuristic=None, weight="weight"):
 
 def greedy_path_length(G, source, target, heuristic=None, weight="weight"):
     """Returns the length of the shortest path between source and target using
-    the A* ("A-star") algorithm.
+    the greedy algorithm.
 
     Parameters
     ----------
