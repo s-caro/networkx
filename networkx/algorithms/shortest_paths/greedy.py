@@ -121,7 +121,7 @@ def greedy_path(G, source, target, heuristic=None, weight="weight"):
         explored[curnode] = parent
 
         for neighbor, w in G[curnode].items():
-            ncost = dist + weight(curnode, neighbor, w)
+            ncost = dist #+ weight(curnode, neighbor, w)
             if neighbor in enqueued:
                 qcost, h = enqueued[neighbor]
                 # if qcost <= ncost, a less costly path from the
@@ -133,7 +133,7 @@ def greedy_path(G, source, target, heuristic=None, weight="weight"):
             else:
                 h = heuristic(neighbor, target)
             enqueued[neighbor] = ncost, h
-            push(queue, (ncost + h, next(c), neighbor, ncost, curnode))
+            push(queue, (h, next(c), neighbor, ncost, curnode))
 
     raise nx.NetworkXNoPath(f"Node {target} not reachable from {source}")
 
